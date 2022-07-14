@@ -81,9 +81,9 @@ class Account {
 
     public function getError($error) {
         if(!in_array($error, $this->errorArray)) {
-            $error = "";
+            return "<span class='errorMessage'>$error</span>";
         }
-        return "<span class='errorMessage'>$error</span>";
+        
     }
 
 }
