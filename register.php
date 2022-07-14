@@ -1,6 +1,6 @@
 <?php
 
-require_once("./includes/config.php");
+require_once("includes/config.php");
 require_once("includes/classes/FormSanitizer.php");
 require_once("includes/classes/Constants.php");
 require_once("includes/classes/Account.php");
@@ -18,11 +18,14 @@ require_once("includes/classes/Account.php");
         $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
         $password2 = FormSanitizer::sanitizeFormPassword($_POST["password2"]);        
     
-        $account->register($firstName, $lastName, $username, $email, $email2, $password, $password2);
+        $success = $account->register($firstName, $lastName, $username, $email, $email2, $password, $password2);
 
+        if($success) {
+            header("Location: index.php");
+        }
+        
     }
-
-
+    
 ?>
 
 <!DOCTYPE html>
