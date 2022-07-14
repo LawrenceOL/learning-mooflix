@@ -14,6 +14,7 @@ class Account {
         $this->validateFirstName($fn);
         $this->validateLastName($ln);
         $this->validateUsername($un);
+        $this->validateEmails($em, $em2);
         
     }    
 
@@ -37,12 +38,32 @@ class Account {
             return;           
         }
 
-        $query = $this->con->prepare("SELECT username FROM users WHERE username=:un");
+        $query = $this->con->prepare("SELECT * FROM users WHERE username=:un");
         $query->bindValue(":un", $un);
         $query->execute();
 
         if($query->rowCount() != 0) {
             array_push($this->errorArray, Constants::$usernameTaken);
+        }
+    }
+
+    private function validateEmails($em, $em2) {
+        if($em != $em2) {
+            array_push($this->errorArray, Constants::$emailsDoNotMatch);
+            return;
+        }
+
+        if(!filter_var($em, FILTER_VALIDATE_EMAIL)) {
+            array_push($this->errorArray, Constants::$emailInvalid);
+        }
+
+        $query = $this->con->prepare("SELECT * FROM users WHERE email=:em");
+        $query->bindValue(":em", $em);
+        $query->execute();
+
+        if($query->rowCount() != 0) {
+            array_push($this->errorArray, Constants::$emailTaken);
+            return;
         }
     }
 
