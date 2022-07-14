@@ -61,7 +61,9 @@ require_once("includes/classes/Account.php");
                 <?php echo $account->getError(Constants::$emailInvalid); ?>
                 <?php echo $account->getError(Constants::$emailTaken); ?>
                 <input type="email" name="email" placeholder="Email" required>
-                
+
+                <?php echo $account->getError(Constants::$passwordsDoNotMatch); ?>
+                <?php echo $account->getError(Constants::$passwordLength); ?>
                 <input type="email" name="email2" placeholder="Confirm Email" required>
                 
                 <input type="password" name="password" placeholder="Password" required>
