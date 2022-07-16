@@ -7,10 +7,10 @@ if(!isset($_SESSION["userLoggedIn"])) {
     header("Location: register.php");
 }
 
-// $userLoggedIn = $_SESSION["userLoggedIn"];
+$userLoggedIn = $_SESSION["userLoggedIn"];
 
-// $preview = new PreviewProvider($con, $userLoggedIn);
-// echo $preview->createPreviewVideo();
+$preview = new PreviewProvider($con, $userLoggedIn);
+echo $preview->createPreviewVideo(null);
 
 ?>
 
