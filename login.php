@@ -19,11 +19,16 @@ $account = new Account($con);
             $_SESSION["userLoggedIn"] = $username;
 
             header("Location: index.php");
-        }
-        
+        }      
         
     }
-    
+
+function getInputValue($name) {
+    if(isset($_POST[$name])) {
+        echo $_POST[$name];
+    }
+}    
+
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +52,7 @@ $account = new Account($con);
             </div>
             <form id="signUpForm" method="POST"> 
                 <?php echo $account->getError(Constants::$loginFailed); ?>               
-                <input type="text" name="username" placeholder="Username" required>
+                <input type="text" name="username" placeholder="Username" value="<?php getInputValue("username");?>" required>
                 
                 <input type="password" name="password" placeholder="Password" required>
                 
