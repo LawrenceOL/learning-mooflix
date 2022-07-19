@@ -24,5 +24,5 @@ $userLoggedIn = $_SESSION["userLoggedIn"];
 </head>
 
 <body>
-    
-</body>
+
+<div class='wrapper'>

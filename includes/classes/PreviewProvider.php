@@ -1,17 +1,20 @@
 <?php
 
-class PreviewProvider {
+class PreviewProvider
+{
 
     private $con, $username;
 
-    public function __construct($con, $username) {
+    public function __construct($con, $username)
+    {
         $this->con = $con;
         $this->username = $username;
     }
 
-    public function createPreviewVideo($entity) {
-        
-        if($entity == null) {
+    public function createPreviewVideo($entity)
+    {
+
+        if ($entity == null) {
             $entity = $this->getRandomEntity();
         }
 
@@ -21,7 +24,7 @@ class PreviewProvider {
         //filepaths
         $preview = $entity->getPreview();
         $thumbnail = $entity->getThumbnail();
-        
+
         return "<div class='previewContainer'>
                     
                         <img src='$thumbnail' class='previewImage' hidden>
@@ -30,25 +33,35 @@ class PreviewProvider {
                             <source src='$preview' type='video/mp4'>
                         </video>
 
+                        <div class='previewOverlay'>
+                            <div class='mainDetails'>
+                                <h3>
+                                $name
+                                </h3>
+
+                                <div class='buttons'>
+                                    <button> Play </button>
+                                    <button> Volume </button>
+
+                                </div>
+
+
+                            </div>
+                            
+                            
+                            </div>
+
                 </div>";
-
-
-
     }
 
-    private function getRandomEntity() {
-        
+    private function getRandomEntity()
+    {
+
         $query = $this->con->prepare("SELECT * FROM entities ORDER BY RAND() LIMIT 1");
         $query->execute();
 
         $row = $query->fetch(PDO::FETCH_ASSOC);
-        
+
         return new Entity($this->con, $row);
-
     }
-    
-
-
 }
-
-?>
