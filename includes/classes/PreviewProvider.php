@@ -29,7 +29,7 @@ class PreviewProvider
                     
                         <img src='$thumbnail' class='previewImage' hidden>
                     
-                        <video autoplay muted class='previewVideo'>
+                        <video autoplay muted class='previewVideo' onended='previewEnded()'>
                             <source src='$preview' type='video/mp4'>
                         </video>
 
@@ -40,8 +40,8 @@ class PreviewProvider
                                 </h3>
 
                                 <div class='buttons'>
-                                    <button> Play </button>
-                                    <button> Volume </button>
+                                    <button><i class='fa-solid fa-play'></i> Play </button>
+                                    <button onclick='volumeToggle(this)'><i class='fa-solid fa-volume-xmark'></i>  </button>
 
                                 </div>
 

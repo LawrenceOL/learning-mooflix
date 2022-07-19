@@ -11,6 +11,12 @@ body {
   box-sizing: border-box;
 }
 
+.wrapper {
+  min-width: 1050px;
+  min-height: 100%;
+  background-color: #141414;
+}
+
 .signInContainer {
   background-color: #dcdcda;
   height: 100vh;
@@ -131,4 +137,14 @@ span {
   border-radius: 2px;
   margin-bottom: 15px;
   margin-right: 5px;
+  cursor: pointer;
+}
+
+button i {
+  color: inherit;
+}
+
+.mainDetails button:hover {
+  background-color: #e6e6e6;
+  color: #000;
 }
