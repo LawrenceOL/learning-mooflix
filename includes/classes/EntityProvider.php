@@ -1,4 +1,9 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 class EntityProvider
 {
 
@@ -12,7 +17,7 @@ class EntityProvider
             $sql .= "WHERE categoryId=:categoryId ";
         }
 
-        $sql .= "ORDER BY RAND() LIMIT :limt";
+        $sql .= "ORDER BY RAND() LIMIT :limit";
 
         $query = $con->prepare($sql);
 
