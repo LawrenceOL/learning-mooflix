@@ -185,3 +185,7 @@ button i {
   overflow-y: hidden;
   white-space: nowrap;
 }
+
+.previewCategories {
+  padding: 0 50px;
+}
