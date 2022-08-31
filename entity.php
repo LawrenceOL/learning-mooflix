@@ -1,6 +1,7 @@
 <?php
 require_once("includes/Header.php");
 
+
 if (!isset($_GET["id"])) {
     ErrorMessage::show("No ID passed into page");
 }
@@ -12,4 +13,4 @@ $preview = new PreviewProvider($con, $userLoggedIn);
 echo $preview->createPreviewVideo($entity);
 
 $seasonProvider = new SeasonProvider($con, $userLoggedIn);
-// echo $preview->create($entity);
+echo $seasonProvider->create($entity);
