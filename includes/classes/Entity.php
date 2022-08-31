@@ -26,6 +26,11 @@ class Entity
         return $this->sqlData["id"];
     }
 
+    public function getCategoryId()
+    {
+        return $this->sqlData["categoryId"];
+    }
+
     public function getName()
     {
         return $this->sqlData["name"];
@@ -40,6 +45,8 @@ class Entity
     {
         return $this->sqlData["thumbnail"];
     }
+
+
 
     public function getSeasons()
     {
