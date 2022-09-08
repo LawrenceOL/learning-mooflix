@@ -39,7 +39,7 @@ class Video
 
     public function getFilePath()
     {
-        return $this->sqlData["filepath"];
+        return $this->sqlData["filePath"];
     }
 
     public function getThumbnail()
