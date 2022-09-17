@@ -23,3 +23,6 @@ $video->incrementViews();
 
 
 </div>
+<script>
+initVideo();
+</script>
