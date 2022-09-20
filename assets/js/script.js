@@ -30,6 +30,7 @@ function startHideTimer() {
 
 function initVideo(videoId, username) {
   startHideTimer();
+  setStartTime(videoId, username);
   updateProgressTimer(videoId, username);
 }
 
@@ -77,6 +78,27 @@ function setFinished(videoId, username) {
     { videoId: videoId, username: username },
     function (data) {
       if (data) alert(data);
+    }
+  );
+}
+
+function setStartTime(videoId, username) {
+  $.post(
+    "ajax/getProgress.php",
+    { videoId: videoId, username: username },
+    function (data) {
+      if (isNaN(data)) {
+        alert(data);
+        return;
+      }
+
+      console.log(data);
+      console.log("hello?");
+
+      $("video").on("canplay", function () {
+        this.currentTime = data;
+        $("video").off("canplay");
+      });
     }
   );
 }
