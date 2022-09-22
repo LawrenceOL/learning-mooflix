@@ -58,4 +58,9 @@ class Video
         $query->bindValue(":id", $this->getID());
         $query->execute();
     }
+
+    public function getSeasonNumber()
+    {
+        return $this->sqlData["season"];
+    }
 }
