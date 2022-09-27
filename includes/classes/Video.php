@@ -63,4 +63,9 @@ class Video
     {
         return $this->sqlData["season"];
     }
+
+    public function getEntityId()
+    {
+        return $this->sqlData["entityId"];
+    }
 }
