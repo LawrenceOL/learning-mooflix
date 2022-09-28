@@ -112,3 +112,7 @@ restartVideo = () => {
 watchVideo = (videoId) => {
   window.location.href = "watch.php?id=" + videoId;
 };
+
+showUpNext = () => {
+  $(".upNext").fadeIn();
+};

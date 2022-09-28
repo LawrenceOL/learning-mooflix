@@ -284,3 +284,8 @@ button i {
 .watchNav {
   z-index: 2;
 }
+
+.restart {
+  position: relative;
+  right: 50px;
+}
