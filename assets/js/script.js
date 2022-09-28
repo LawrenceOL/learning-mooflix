@@ -102,3 +102,9 @@ function setStartTime(videoId, username) {
     }
   );
 }
+
+restartVideo = () => {
+  $("video")[0].currentTime = 0;
+  $("video")[0].play();
+  $(".upNext").fadeOut();
+};
