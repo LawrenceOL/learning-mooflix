@@ -108,3 +108,7 @@ restartVideo = () => {
   $("video")[0].play();
   $(".upNext").fadeOut();
 };
+
+watchVideo = (videoId) => {
+  window.location.href = "watch.php?id=" + videoId;
+};
