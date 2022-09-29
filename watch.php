@@ -18,7 +18,7 @@ $upNextVideo = VideoProvider::getUpNext($con, $video);
         <h1><?php echo $video->getTitle(); ?></h1>
     </div>
 
-    <div class="videoControls upNext">
+    <div class="videoControls upNext" style="display: none;">
         <button class="restart" onclick=" restartVideo();"><i class=" fas fa-redo"></i></button>
 
         <div>
