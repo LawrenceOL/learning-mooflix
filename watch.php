@@ -1,4 +1,5 @@
 <?php
+$hideNav = true;
 require_once("includes/Header.php");
 
 if (!isset($_GET["id"])) {
