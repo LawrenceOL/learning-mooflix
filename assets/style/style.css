@@ -3,6 +3,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  background-color: #141414;
 }
 
 * {
@@ -195,6 +196,7 @@ button i {
 
 .previewCategories {
   padding: 0 50px;
+  background-color: #141414;
 }
 
 .errorBanner {
