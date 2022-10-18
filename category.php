@@ -10,4 +10,4 @@ $preview = new PreviewProvider($con, $userLoggedIn);
 echo $preview->createCategoryShowPreviewVideo($_GET["id"]);
 
 $containers = new CategoryContainers($con, $userLoggedIn);
-echo $containers->showMovieCategories();
+echo $containers->showCategory($_GET["id"]);
