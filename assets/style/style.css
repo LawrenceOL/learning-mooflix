@@ -48,6 +48,55 @@ a {
   overflow-y: auto;
 }
 
+.column form {
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px;
+}
+
+.column form input[type="text"],
+.column form input[type="email"],
+.column form input[type="password"] {
+  font-size: 14px;
+  margin: 10px 0;
+  border: none;
+  border-bottom: 1px solid #dedede;
+}
+
+.column form input[type="submit"] {
+  background-color: #4285f4;
+  color: #fff;
+  height: 36px;
+  width: 88px;
+  border: none;
+  border-radius: 3px;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.column .header {
+  padding: 20px 0;
+}
+
+.column h3 {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  margin: 0;
+  padding-top: 16px;
+  color: #000;
+}
+
+.column .header span {
+  font-size: 14px;
+}
+
+.column .header img {
+  width: 100px;
+}
+
 #signUpForm {
   display: flex;
   flex-direction: column;
@@ -100,8 +149,14 @@ span {
   text-decoration: none;
 }
 
+.signInMessage {
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
 .errorMessage {
-  color: red;
+  color: #f00;
   font-size: 14px;
   font-weight: 400;
   text-align: center;
@@ -378,4 +433,45 @@ button i {
   font-size: 20px;
   padding: 5px 10px;
   border-radius: 3px;
+}
+
+.settingsContainer {
+  padding-top: 60px;
+  background-color: transparent;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.settingsContainer h2 {
+  color: #fff;
+  margin-top: 0;
+}
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  border-bottom: 1px solid #dedede;
+  padding-bottom: 20px;
+}
+
+.settingsContainer form input[type="text"],
+.settingsContainer form input[type="email"],
+.settingsContainer form input[type="password"] {
+  width: 300px;
+  height: 40px;
+  font-size: 15px;
+  margin: 5px 0;
+  border: none;
+  border-radius: 3px;
+  padding: 0 5px;
+}
+
+.settingsContainer form input[type="submit"] {
+  background-color: #dc1928;
+  color: #dedede;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
 }
