@@ -168,4 +168,11 @@ class Account
 
         return false;
     }
+
+    public function getFirstError()
+    {
+        if (!empty($this->errorArray)) {
+            return $this->errorArray[0];
+        }
+    }
 }
