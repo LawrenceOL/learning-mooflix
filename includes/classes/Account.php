@@ -8,7 +8,10 @@ class Account
 
     public function __construct($con)
     {
-        session_start();
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
         $this->con = $con;
     }
 
