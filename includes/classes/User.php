@@ -14,4 +14,19 @@ class User
 
         $this->sqlData = $query->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getFirstName()
+    {
+        return $this->sqlData["firstName"];
+    }
+
+    public function getLastName()
+    {
+        return $this->sqlData["lastName"];
+    }
+
+    public function getEmail()
+    {
+        return $this->sqlData["email"];
+    }
 }
