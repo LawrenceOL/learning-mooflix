@@ -175,4 +175,35 @@ class Account
             return $this->errorArray[0];
         }
     }
+
+    public function updatePassword($oldpw, $pw, $pw2, $un)
+    {
+        $this->validateOldPassword($oldpw, $un);
+        $this->validatePasswords($pw, $pw2);
+
+        if (empty($this->errorArray)) {
+            $query = $this->con->prepare("UPDATE users SET password=:pw WHERE username=:un");
+            $pw = hash("sha512", $pw);
+            $query->bindValue(":pw", $pw);
+            $query->bindValue(":un", $un);
+
+            return $query->execute();
+        }
+    }
+
+    public function validateOldPassword($oldpw, $un)
+    {
+        $pw = hash("sha512", $oldpw);
+
+        $query = $this->con->prepare("SELECT * FROM users WHERE username=:un AND password=:pw");
+
+        $query->bindValue(":un", $un);
+        $query->bindValue(":pw", $pw);
+
+        $query->execute();
+
+        if ($query->rowCount() == 0) {
+            array_push($this->errorArray, Constants::$passwordIncorrect);
+        }
+    }
 }
