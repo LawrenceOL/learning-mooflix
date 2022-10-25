@@ -7,32 +7,33 @@ require_once("includes/classes/Account.php");
 
 $account = new Account($con);
 
-    if(isset($_POST["submitButton"])) {
+if (isset($_POST["submitButton"])) {
 
-        $username = FormSanitizer::sanitizeFormUsername($_POST["username"]);
-        $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
-    
-        $success = $account->login($username, $password);
+    $username = FormSanitizer::sanitizeFormUsername($_POST["username"]);
+    $password = FormSanitizer::sanitizeFormPassword($_POST["password"]);
 
-        if($success) {
+    $success = $account->login($username, $password);
 
-            $_SESSION["userLoggedIn"] = $username;
+    if ($success) {
 
-            header("Location: index.php");
-        }      
-        
+        $_SESSION["userLoggedIn"] = $username;
+
+        header("Location: index.php");
     }
+}
 
-function getInputValue($name) {
-    if(isset($_POST[$name])) {
+function getInputValue($name)
+{
+    if (isset($_POST[$name])) {
         echo $_POST[$name];
     }
-}    
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,27 +41,30 @@ function getInputValue($name) {
     <title>Welcome to MooFlix</title>
     <link rel="stylesheet" type="text/css" href="assets/style/style.css" />
 </head>
+
 <body>
     <div class="signInContainer">
         <div class="column">
-            
+
             <div class="header">
-            <img src="assets/images/mooflixlogo.png" title="logo" alt="MooFlix">
+                <a href="index.php"> <img src="assets/images/mooflixlogo.png" title="logo" alt="MooFlix"> </a>
 
                 <h3>Sign In</h3>
                 <span>to continue to MooFlix</span>
             </div>
-            <form id="signUpForm" method="POST"> 
-                <?php echo $account->getError(Constants::$loginFailed); ?>               
-                <input type="text" name="username" placeholder="Username" value="<?php getInputValue("username");?>" required>
-                
+            <form id="signUpForm" method="POST">
+                <?php echo $account->getError(Constants::$loginFailed); ?>
+                <input type="text" name="username" placeholder="Username" value="<?php getInputValue("username"); ?>"
+                    required>
+
                 <input type="password" name="password" placeholder="Password" required>
-                
+
                 <input type="submit" name="submitButton" value="SUBMIT">
             </form>
 
             <a href="register.php" class="signInMessage">Need an account? Sign up here.</a>
-</div>
+        </div>
     </div>
 </body>
+
 </html>

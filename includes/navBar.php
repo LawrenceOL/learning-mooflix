@@ -1,7 +1,7 @@
 <div class="topBar">
 
     <div class="logoContainer">
-        <img src="assets/images/mooflixlogo.png" alt="Mooflix logo">
+        <a href="index.php"> <img src="assets/images/mooflixlogo.png" alt="Mooflix logo"> </a>
     </div>
 
     <ul class="navLinks">
