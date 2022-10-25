@@ -22,7 +22,19 @@ $(function() {
 
         timer = setTimeout(function() {
             let val = $(".searchInput").val();
-            console.log();
+
+            if (val != "") {
+                $.post("ajax/getSearchResults.php", {
+                    term: val,
+                    username: username
+                }, function(data) {
+                    $(".results").html(data);
+                })
+            } else {
+                $(".results").html("");
+            }
+
+
         }, 500);
     })
 
