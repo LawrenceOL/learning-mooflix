@@ -1,8 +1,31 @@
 <?php
 
 require_once("includes/Header.php");
+require_once("includes/classes/Account.php");
+require_once("includes/classes/FormSanitizer.php");
+require_once("includes/classes/Constants.php");
+
+if (isset($_POST["saveDetailsButton"])) {
+    $account = new Account($con);
+
+    $firstName = FormSanitizer::sanitizeFormString($_POST["firstName"]);
+    $lastName = FormSanitizer::sanitizeFormString($_POST["lastName"]);
+    $email = FormSanitizer::sanitizeFormEmail($_POST["email"]);
+
+    if ($account->updateDetails($firstName, $lastName, $email, $userLoggedIn)) {
+        echo "Success";
+    } else {
+        echo "Failure";
+    }
+}
+
+
+
+
 
 ?>
+
+
 
 <div class="settingsContainer column">
 
