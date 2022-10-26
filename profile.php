@@ -4,11 +4,17 @@ require_once("includes/Header.php");
 require_once("includes/classes/Account.php");
 require_once("includes/classes/FormSanitizer.php");
 require_once("includes/classes/Constants.php");
+require_once("includes/classes/BillingDetails.php");
 require_once("includes/paypalConfig.php");
 
 $detailsMessage = "";
 $errorMessage = "";
 $passwordMessage = "";
+$user = new User($con, $userLoggedIn);
+
+$subscriptionMessage = "<div class='alertError'>
+                            Something went wrong.
+                            </div>";
 
 if (isset($_POST["saveDetailsButton"])) {
     $account = new Account($con);
@@ -59,8 +65,14 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
         // Execute agreement
         $agreement->execute($token, $apiContext);
 
-        // Update user's account status
+        $result = BillingDetails::insertDetails($con, $agreement, $token, $userLoggedIn);
+        $result = $result && $user->setIsSubscribed(1);
 
+        if ($result) {
+            $subscriptionMessage = "<div class='alertSuccess'>
+                            Subscription valid.
+                            </div>";
+        }
     } catch (PayPal\Exception\PayPalConnectionException $ex) {
         echo $ex->getCode();
         echo $ex->getData();
@@ -69,7 +81,9 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
         die($ex);
     }
 } else if (isset($_GET['success']) && $_GET['success'] == 'false') {
-    echo "user canceled agreement";
+    $subscriptionMessage = "<div class='alertError'>
+                            User cancelled or something went wrong.
+                            </div>";
 }
 
 
@@ -89,7 +103,7 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
             <h2>User details</h2>
 
             <?php
-            $user = new User($con, $userLoggedIn);
+
             $firstName = isset($_POST["firstName"]) ? $_POST["firstName"] : $user->getFirstName();
             $lastName = isset($_POST["lastName"]) ? $_POST["lastName"] : $user->getLastName();
             $email = isset($_POST["email"]) ? $_POST["email"] : $user->getEmail();
@@ -132,6 +146,10 @@ if (isset($_GET['success']) && $_GET['success'] == 'true') {
     <div class="formSection">
 
         <h2>Subscription</h2>
+
+        <div class="message">
+            <?php echo $subscriptionMessage; ?>
+        </div>
 
         <?php
         if ($user->getIsSubscribed()) {
